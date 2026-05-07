@@ -25,6 +25,7 @@
  */
 
 #include "perturbations.h"
+#include "utis.h"
 #include "parallel.h"
 
 
@@ -8990,6 +8991,10 @@ int perturbations_derivs(double tau,
 
       metric_continuity = -3.*pvecmetric[ppw->index_mt_phi_prime];
       metric_euler = k2*pvecmetric[ppw->index_mt_psi];
+
+      if (pba->has_utis == _TRUE_) {
+        metric_euler *= utis_mu_m(pba,a,k);
+      }
       metric_shear = 0.;
       //metric_shear_prime = 0.;
       metric_ufa_class = -6.*pvecmetric[ppw->index_mt_phi_prime];
@@ -10121,6 +10126,11 @@ int perturbations_tca_slip_and_shear(double * y,
 
     metric_continuity = -3.*pvecmetric[ppw->index_mt_phi_prime];
     metric_euler = k2*pvecmetric[ppw->index_mt_psi];
+
+    if (pba->has_utis == _TRUE_) {
+      metric_euler *= utis_mu_m(pba,a,k);
+    }
+
     metric_shear = 0.;
     metric_shear_prime = 0.;
   }

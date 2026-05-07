@@ -4,6 +4,10 @@
 
 #include "background.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* =========================================================
    UTIS geometry response engine
    ========================================================= */
@@ -39,5 +43,9 @@ double utis_V(
     struct background *pba,
     double theta
 );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

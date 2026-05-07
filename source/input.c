@@ -3315,6 +3315,21 @@ int input_read_parameters_species(struct file_content * pfc,
     }
   }
 
+
+  /* ==== UTIS parameter reading ==== */
+
+  class_read_flag("has_utis",pba->has_utis);
+
+  if (pba->has_utis == _TRUE_) {
+
+    class_read_double("A_theta_utis",pba->A_theta_utis);
+
+    class_read_double("n_theta_utis",pba->n_theta_utis);
+
+    class_read_double("k_c_override_utis",pba->k_c_override_utis);
+  }
+
+
   /** 8.b) If Omega scalar field (SCF) is different from 0 */
   if (pba->Omega0_scf != 0.){
 
@@ -5918,6 +5933,13 @@ int input_default_params(struct background *pba,
   pba->wa_fld = 0.;
   /** 9.a.2.2) 'EDE' case */
   pba->Omega_EDE = 0.;
+
+  /* ==== UTIS default parameters ==== */
+  pba->has_utis = _FALSE_;
+  pba->A_theta_utis = 0.;
+  pba->n_theta_utis = 1.;
+  pba->k_c_override_utis = 0.1;
+
   /** 9.b) Omega scalar field */
   /** 9.b.1) Potential parameters and initial conditions */
   pba->scf_parameters = NULL;

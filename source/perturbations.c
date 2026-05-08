@@ -7789,9 +7789,10 @@ int perturbations_sources(
 
     }
 
-    /* total matter overdensity (gauge-invariant, defined as in arXiv:1307.1459) */
+    /* total matter overdensity (UTIS-modified observable transfer) */
     if (ppt->has_source_delta_m == _TRUE_) {
-      _set_source_(ppt->index_tp_delta_m) = ppw->delta_m;
+      _set_source_(ppt->index_tp_delta_m) =
+        sqrt(utis_mu_m(pba,ppw->pvecback[pba->index_bg_a],k)) * ppw->delta_m;
     }
 
     /* cdm and baryon over density */
@@ -8994,7 +8995,7 @@ int perturbations_derivs(double tau,
       metric_euler = k2*pvecmetric[ppw->index_mt_psi];
 
       if (pba->has_utis == _TRUE_) {
-        metric_euler *= utis_mu_m(pba,a,k);
+        metric_euler *= utis_mu_m(pba,ppw->pvecback[pba->index_bg_a],k);
       }
       metric_shear = 0.;
       //metric_shear_prime = 0.;

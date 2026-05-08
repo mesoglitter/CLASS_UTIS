@@ -7750,12 +7750,13 @@ int perturbations_sources(
 
       if (ppt->gauge == newtonian)
         _set_source_(ppt->index_tp_phi_plus_psi) =
-          utis_sigma_l(pba,a,k) *
+          utis_sigma_l(pba,ppw->pvecback[pba->index_bg_a],k) *
           (y[ppw->pv->index_pt_phi] + pvecmetric[ppw->index_mt_psi]);
 
       if (ppt->gauge == synchronous)
         _set_source_(ppt->index_tp_phi_plus_psi) =
-          y[ppw->pv->index_pt_eta] + pvecmetric[ppw->index_mt_alpha_prime];
+          utis_sigma_l(pba,ppw->pvecback[pba->index_bg_a],k) *
+          (y[ppw->pv->index_pt_eta] + pvecmetric[ppw->index_mt_alpha_prime]);
 
     }
 

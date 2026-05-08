@@ -3327,6 +3327,9 @@ int input_read_parameters_species(struct file_content * pfc,
     class_read_double("n_theta_utis",pba->n_theta_utis);
 
     class_read_double("k_c_override_utis",pba->k_c_override_utis);
+    class_read_double("utis_s0",pba->utis_s0);
+    class_read_double("utis_sigma0",pba->utis_sigma0);
+    class_read_double("utis_kc",pba->utis_kc);
   }
 
 
@@ -5939,6 +5942,9 @@ int input_default_params(struct background *pba,
   pba->A_theta_utis = 0.;
   pba->n_theta_utis = 1.;
   pba->k_c_override_utis = 0.1;
+  pba->utis_s0 = 0.;
+  pba->utis_sigma0 = 0.;
+  pba->utis_kc = 0.1;
 
   /** 9.b) Omega scalar field */
   /** 9.b.1) Potential parameters and initial conditions */

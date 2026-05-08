@@ -25,6 +25,7 @@ double utis_theta(
 
 /* =========================================================
    matter gravity response
+   mu(k,a) = 1 - s0 a^n k^2/(k^2+kc^2)
    ========================================================= */
 
 double utis_mu_m(
@@ -33,13 +34,23 @@ double utis_mu_m(
     double k
 ){
 
-    double theta = utis_theta(pba,a,k);
+    if (pba->has_utis == _FALSE_) {
+        return 1.0;
+    }
 
-    return cos(theta)*cos(theta);
+    double s0 = pba->utis_s0;
+    double n  = pba->n_theta_utis;
+    double kc = pba->utis_kc;
+
+    double k2  = k*k;
+    double kc2 = kc*kc;
+
+    return 1.0 - s0 * pow(a,n) * (k2/(k2+kc2));
 }
 
 /* =========================================================
    light/lensing response
+   Sigma(k,a) = 1 - sigma0 a^n k^2/(k^2+kc^2)
    ========================================================= */
 
 double utis_sigma_l(
@@ -48,7 +59,18 @@ double utis_sigma_l(
     double k
 ){
 
-    return 1.0;
+    if (pba->has_utis == _FALSE_) {
+        return 1.0;
+    }
+
+    double sigma0 = pba->utis_sigma0;
+    double n      = pba->n_theta_utis;
+    double kc     = pba->utis_kc;
+
+    double k2  = k*k;
+    double kc2 = kc*kc;
+
+    return 1.0 - sigma0 * pow(a,n) * (k2/(k2+kc2));
 }
 
 /* =========================================================

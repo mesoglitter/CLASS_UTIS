@@ -118,6 +118,9 @@ struct background
   double A_theta_utis;         /**< UTIS phase amplitude */
   double n_theta_utis;         /**< UTIS phase evolution exponent */
   double k_c_override_utis;    /**< UTIS transition scale */
+  double utis_s0;              /**< UTIS matter growth damping amplitude */
+  double utis_sigma0;          /**< UTIS Weyl/lensing damping amplitude */
+  double utis_kc;              /**< UTIS observable transition scale */
 
   double * scf_parameters; /**< list of parameters describing the scalar field potential */
   short attractor_ic_scf;  /**< whether the scalar field has attractor initial conditions */
